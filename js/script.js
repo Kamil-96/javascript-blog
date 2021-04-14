@@ -58,7 +58,7 @@
         optTitleListSelector = '.titles';
     
     function generateTitleLinks(){
-
+        
         /* remove contents of titleList */
 
         const titleList = document.querySelector(optTitleListSelector).innerHTML = '';
@@ -73,11 +73,11 @@
 
         /* get the article id */
 
+        const articleId = articles.getAttribute('id');
+        
+        /* find the title element and get the title from the title element*/
 
-
-        /* find the title element */
-
-        /* get the title from the title element */
+        const articleTitle = article.querySelector(optTitleSelector).innerHTML;
 
         /* create HTML of the link */
 
