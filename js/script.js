@@ -50,7 +50,8 @@
     optArticleAuthorSelector = '.post-author',
     optTagsListSelector = '.tags.list',
     optCloudClassCount = '3',
-    optCloudClassPrefix = 'tag-size-';
+    optCloudClassPrefix = 'tag-size-',
+    optAuthorsListSelector = '.authors.list';
 
   function generateTitleLinks(customSelector = ''){
 
@@ -247,6 +248,8 @@
   addClickListenersToTags();
 
   function generateAuthors(){
+    //[NEW]
+    let allAuthors = {};
 
     const articles = document.querySelectorAll(optArticleSelector);
     for(let article of articles){
@@ -256,7 +259,20 @@
       const linkHTML = '<a href="#ath-' + authorName + '">' + authorName + '</a>';
       html = html + linkHTML;
       authorsWrapper.innerHTML = html;
+      //[NEW]
+      if(!allAuthors[authorName]){
+        allAuthors[authorName] = 1;
+      } else {
+        allAuthors[authorName]++;
+      }
     }
+    //[NEW]
+    const authorList = document.querySelector('.authors');
+    let allAuthorsHTML = '';
+    for(let authorName in allAuthors){
+      allAuthorsHTML += '<li><a href="#ath-' + authorName + '">' + authorName + '</a> (' + allAuthors[authorName] + ')' +'</li>';
+    }
+    authorList.innerHTML = allAuthorsHTML;
   }
 
   generateAuthors();
@@ -266,7 +282,7 @@
     const clickedElement = this;
     const href = clickedElement.getAttribute('href');
     const author = href.replace('#ath-', '');
-    const activeLinks = document.querySelectorAll('a.active[href^="#-ath"]');
+    const activeLinks = document.querySelectorAll('a.active[href^="#ath-"]');
     for(let activeLink of activeLinks){
       activeLink.classList.remove('active');
     }
