@@ -124,3 +124,25 @@ body {
       }
     }
 }
+
+/* Sidebar */
+
+.sidebar {
+
+  .tags {
+
+    a {
+      text-decoration: none;
+      //margin-right: 5px;
+    }
+    .tag-size-1 {
+      font-size: 14px;
+    }
+    .tag-size-2 {
+      font-size: 19px;
+    }
+    .tag-size-3 {
+      font-size: 25px;
+    }
+  }
+}
